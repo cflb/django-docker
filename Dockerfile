@@ -3,13 +3,10 @@ RUN apt-get update -y
 
 RUN apt-get install -y vim python3 python3-venv python3-pip
 
-#CMD mkdir ~/
-WORKDIR ~/
+CMD mkdir ~/src
 
-# Criando ambiente virtual python
-RUN python3 -m venv venv
-# Ativando ambeinte
-RUN . venv/bin/activate
+WORKDIR ~/src
+
 # Instalando django e gunicorn
 RUN pip3 install django gunicorn
 
