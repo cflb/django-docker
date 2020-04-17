@@ -1,0 +1,29 @@
+asgiref==3.2.7
+certifi==2020.4.5.1  # django-webpush
+cffi==1.14.0  # django-webpush
+chardet==3.0.4  # django-webpush
+cryptography==2.9  # django-webpush
+dj-database-url==0.5.0
+Django==3.0.5  # django
+django-heroku==0.3.1  # heroku
+django-webpush==0.3.2  # django-webpush
+djangorestframework==3.11.0  # django rest framework
+entrypoints==0.3  # flake8
+flake8==3.7.9  # flake8
+flake8-django==0.0.4  # flake8
+gunicorn==20.0.4
+http-ece==1.1.0  # django-webpush
+idna==2.9  # django-webpush
+mccabe==0.6.1  # flake8
+psycopg2==2.8.5
+py-vapid==1.7.0   # django-webpush
+pycodestyle==2.5.0  # flake8
+pycparser==2.20  # django-webpush
+pyflakes==2.1.1  # flake8
+pytz==2019.3
+pywebpush==1.9.4  # django-webpush
+requests==2.23.0  # django-webpush
+six==1.14.0  # django-webpush
+sqlparse==0.3.1
+urllib3==1.25.8  # django-webpush
+whitenoise==5.0.1
