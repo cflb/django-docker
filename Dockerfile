@@ -1,33 +1,20 @@
-FROM debian
-RUN apt-get update -y
+FROM python:3.7-alpine
+RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev vim jpeg-dev zlib-dev tzdata
+ENV TZ America/Sao_Paulo
+LABEL maintainer="Meu Projeto"
 
-RUN apt-get install -y vim python3 python3-venv python3-pip
+ENV PYTHONUNBUFFERED 1
+ENV PIP_DEFAULT_TIMEOUT 100
 
-CMD mkdir ~/src
+#COPY ./requirements.txt /requirements.txt
 
-WORKDIR ~/src
+RUN pip install --upgrade pip
 
-# Instalando django e gunicorn
-RUN pip3 install django gunicorn
+RUN mkdir /src
+WORKDIR /src
+COPY ./src /src
 
-# o nome do diretório do projeto deve ser modificado caso queira,
-# no meu modelo o projeto chama-se "my_project" 
-# proxima versao desta Dockerfile farei isso ficar dinamico 
-COPY my_project/ .
-
-# Este container entende que você já possui um projeto django 
-# que você já esteja trabalhando 
-RUN cd my_project/
-
-RUN python3 manage.py makemigrations
-RUN python3 manage.py migrate
-
-# TODO:
-# 	Não testar agora (melhorar)
-# 	- RUN python3 manage.py test
-
-EXPOSE 8000
-
-ENTRYPOINT ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
-
-
+RUN pip install -r requirements.txt
+CMD python manage.py makemigrations
+CMD python manage.py migrate
+CMD python manage.py jsonfiles_data/db.json
